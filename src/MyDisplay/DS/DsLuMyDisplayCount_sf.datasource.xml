@@ -1,0 +1,13 @@
+<DataSource name="DsLuMyDisplayCount" backendSystem="sf" businessObjectClass="LuMyDisplayCount" external="false" editableEntity="Display__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pKey" table="Display__c" column="Id" />
+    <DerivedAttribute name="displayCount" value="Count(*)" />
+  </Attributes>
+  <Entities>
+    <Entity name="Display__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition />
+  <OrderCriteria />
+  <Parameters />
+</DataSource>

@@ -1,0 +1,40 @@
+<BusinessObject name="BoMyDemand" schemaVersion="1.1">
+  <DataSource name="DsBoMyDemand"/>
+  <SimpleProperties>
+    <SimpleProperty name="pKey" type="DomText" id="true" dataSourceProperty="pKey"/>
+    <SimpleProperty name="orderId" type="DomText" id="false" dataSourceProperty="orderId"/>
+    <SimpleProperty name="demandCreatedDate" type="DomDate" id="false" dataSourceProperty="demandCreatedDate"/>
+    <SimpleProperty name="l1Name" type="DomText" id="false" dataSourceProperty="l1Name"/>
+    <SimpleProperty name="l1InChargeWhotheyMetAtL1" type="DomText" id="false" dataSourceProperty="l1InChargeWhotheyMetAtL1"/>
+    <SimpleProperty name="demandFulfillmentRecivedDate" type="DomDate" id="false" dataSourceProperty="demandFulfillmentRecivedDate"/>
+    <SimpleProperty name="demandFulfillmentrReqquestedDate" type="DomDate" id="false" dataSourceProperty="demandFulfillmentrReqquestedDate"/>
+    <SimpleProperty name="stage" type="DomText" id="false" dataSourceProperty="stage"/>
+    <SimpleProperty name="shopName" type="DomText" id="false" dataSourceProperty="shopName"/>
+    <SimpleProperty name="demandFulfillmentDate" type="DomDate" id="false" dataSourceProperty="demandFulfillmentDate"/>
+    <SimpleProperty name="demandDispatched" type="DomBool" id="false" dataSourceProperty="demandDispatched"/>
+    <SimpleProperty name="isTheDemandPreparedForDispatch" type="DomBool" id="false" dataSourceProperty="isTheDemandPreparedForDispatch"/>
+    <SimpleProperty name="stockAvailable" type="DomBool" id="false" dataSourceProperty="stockAvailable"/>
+    <SimpleProperty name="givenStock" type="DomInteger" id="false" dataSourceProperty="givenStock"/>
+    <SimpleProperty name="l1NameText" type="DomText" id="false" dataSourceProperty="l1NameText"/>
+    <SimpleProperty name="l1InchargeName" type="DomText" id="false" dataSourceProperty="l1InchargeName"/>
+    <!-- <SimpleProperty name="orderTemplate" type="DomText" id="true" dataSourceProperty="orderTemplate" /> -->
+  </SimpleProperties>
+  <NestedObjects/>
+  <ObjectLookups/>
+  <ListObjects/>
+  <Methods>
+    <Method name="beforeSaveAsync"/>
+    <Method name="afterSaveAsync"/>
+    <Method name="beforeLoadAsync"/>
+    <Method name="afterLoadAsync"/>
+    <Method name="beforeInitialize"/>
+    <Method name="afterInitialize"/>
+    <Method name="beforeDoValidateAsync"/>
+    <Method name="afterDoValidateAsync"/>
+    <Method name="beforeCreateAsync"/>
+    <Method name="afterCreateAsync"/>
+    <Method name="loadAsync"/>
+    <Method name="saveAsync"/>
+    <Method name="createAsync"/>
+  </Methods>
+<Validations><Validation name="myValidateStock"/></Validations></BusinessObject>

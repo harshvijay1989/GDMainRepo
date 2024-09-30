@@ -1,0 +1,19 @@
+<DataSource name="DsLoMyVisitByShops" backendSystem="sf" businessObjectClass="LoMyVisitByShops" external="false" editableEntity="VisitShopWise__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pKey" table="VisitShopWise__c" column="Id" />
+    <Attribute name="shopName" table="VisitShopWise__c" column="ShopName__c" />
+    <Attribute name="totalVisits" table="VisitShopWise__c" column="TotalVisits__c" />
+    <Attribute name="numberofVisitCreatedByTeritary" table="VisitShopWise__c" column="NumberofVisitCreatedByTeritary__c" />
+    <Attribute name="numberofVisitsNotCompleted" table="VisitShopWise__c" column="NumberofVisitsNotCompleted__c" />
+    <Attribute name="user" table="VisitShopWise__c" column="User__c" />
+  </Attributes>
+  <Entities>
+    <Entity name="VisitShopWise__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition />
+  <OrderCriteria>
+    <OrderCriterion entity="VisitShopWise__c" attribute="LastModifiedDate" direction="DESC" />
+  </OrderCriteria>
+  <Parameters />
+</DataSource>

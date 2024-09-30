@@ -1,0 +1,13 @@
+<ListObject name="LoMyUserData" generateLoadMethod="true" schemaVersion="1.1">
+  <DataSource name="DsLoMyUserData"/>
+  <Item objectClass="LiMyUserData"/>
+  <Methods>
+    <Method name="beforeSaveAsync"/>
+    <Method name="afterSaveAsync"/>
+    <Method name="afterLoadAsync"/>
+    <Method name="beforeLoadAsync"/>
+    <Method name="afterDoValidateAsync"/>
+    <Method name="beforeDoValidateAsync"/>
+  <Method name="myGetInfoForUserDataCard"/>
+<Method name="myReduceNumberOfListItems"/></Methods>
+</ListObject>

@@ -1,0 +1,79 @@
+<UIDescription name="MyVisitByShops::MyVisitShopWiseUI" schemaVersion="0.0.0.5">
+  <Page pagePattern="MasterDetailSectionPage" navigation="Off" masterSectionFlex="40" detailSectionFlex="60">
+    <PageHeader>
+      <Bindings>
+        <Resource target="title" type="Label" defaultLabel="Visited Shops" bindingMode="ONE_WAY" />
+      </Bindings>
+    </PageHeader>
+    <Section sectionName="masterSection" sectionPattern="SingleAreaSection">
+      <Area areaName="mainArea" areaPattern="SingleElementArea">
+        <GroupedList name="MasterList" searchable="true" master="true" dataSource="ProcessContext::loVisitShopWise.items[]" onItemDisclosure="false">
+          <SearchAttributes>
+            <SearchAttribute name="ShopName" />
+            <SearchAttribute name="TotalVisits" />
+          </SearchAttributes>
+          <Items name="Items" itemPattern="Pattern1">
+            <ItemListLayout>
+              <Default>
+                <Col>
+                  <Row layoutType="itemIdentifier" bindingId="ShopName" />
+                </Col>
+                <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="TotalVisitsLabel" />
+                  <Row width="2em" layoutType="itemLabel" bindingId="Spacer" />
+                  <Row layoutType="itemIdentifier" bindingId="TotalVisits" />
+                </Col>
+              </Default>
+            </ItemListLayout>
+            <Bindings>
+              <Resource target="TotalVisitsLabel" type="Label" defaultLabel="Total Visits" />
+              <Resource target="Spacer" type="Label" defaultLabel="  " />
+              <Binding target="ShopName" type="TEXT" binding=".shopName" bindingMode="ONE_WAY" />
+              <Binding target="TotalVisits" type="TEXT" binding=".totalVisits" bindingMode="ONE_WAY" />
+            </Bindings>
+          </Items>
+          <Events>
+            <ItemSelectedEvent event="itemSelected" resetMultiAreas="true">
+              <Params>
+                <Param name="pKey" value=".pKey" />
+              </Params>
+            </ItemSelectedEvent>
+          </Events>
+        </GroupedList>
+      </Area>
+    </Section>
+    <Section sectionName="detailSection" sectionPattern="SingleAreaSection">
+      <Area areaName="detailArea" areaPattern="GroupedElementsArea">
+        <GroupElement name="VisitShopWise">
+          <Bindings>
+            <Resource target="Title" type="Label" defaultLabel="Visit Shop Wise" />
+          </Bindings>
+          <InputArea name="ShopName" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Shop Name" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boVisitShopWise.shopName" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="TotalVisits" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Total Visit" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boVisitShopWise.totalVisits" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <!-- <InputArea name="noOfVisitsCreatedByTertiary" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="No of Visits Created by Tertiary" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boVisitShopWise.numberofVisitsNotCompleted" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea> -->
+          <InputArea name="shopOwnerInchargeOfTheShop" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Shop Owner/Incharge of the Shop" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boVisitShopWise.shopOwnerName" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+        </GroupElement>
+     </Area>
+    </Section>
+  </Page>
+</UIDescription>

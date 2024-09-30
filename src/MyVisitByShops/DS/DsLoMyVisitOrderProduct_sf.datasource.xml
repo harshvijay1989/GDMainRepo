@@ -1,0 +1,18 @@
+<DataSource name="DsLoMyVisitOrderProduct" backendSystem="sf" businessObjectClass="LoMyVisitOrderProduct" external="false" editableEntity="VisitOrderProducts__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pKey" table="VisitOrderProducts__c" column="Id" />
+    <Attribute name="productName" table="VisitOrderProducts__c" column="ProductName__c" />
+    <Attribute name="shop" table="VisitOrderProducts__c" column="Shop__c" />
+    <Attribute name="quantity" table="VisitOrderProducts__c" column="Quantity__c" />
+    <Attribute name="demandCreatedDate" table="VisitOrderProducts__c" column="DemandCreatedDate__c" />
+  </Attributes>
+  <Entities>
+    <Entity name="VisitOrderProducts__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition><![CDATA[VisitOrderProducts__c.Shop__c = #pKey#]]></QueryCondition>
+  <OrderCriteria />
+  <Parameters>
+    <Parameter name="pKey" type="TEXT" />
+  </Parameters> 
+</DataSource>

@@ -1,0 +1,33 @@
+<DataSource name="DsBoMyDemand" backendSystem="sf" businessObjectClass="BoMyDemand" external="false" editableEntity="Order__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pKey" table="Order__c" column="Id" />
+    <Attribute name="orderId" table="Order__c" column="Order_Id__c" />
+    <!-- <Attribute name="orderAccountId" table="Order__c" column="Order_Account__c" /> -->
+    <Attribute name="demandCreatedDate" table="Order__c" column="Order_Date__c" />
+    <Attribute name="l1Name" table="Order__c" column="L1Name__c" />
+    <Attribute name="l1InChargeWhotheyMetAtL1" table="Order__c" column="L1InChargeWhotheyMetAtL1__c" />
+    <Attribute name="demandFulfillmentRecivedDate" table="Order__c" column="DemandFulfillmentRecivedDate__c" />
+    <Attribute name="demandFulfillmentrReqquestedDate" table="Order__c" column="DemandFulfillmentrReqquestedDate__c" />
+    <Attribute name="stage" table="Order__c" column="Stage__c" />
+    <Attribute name="shopName" table="Order__c" column="ShopName__c" />
+    <Attribute name="demandFulfillmentDate" table="Order__c" column="DemandFulfillmentDate__c" />
+    <Attribute name="demandDispatched" table="Order__c" column="DemandDispatched__c" />
+    <Attribute name="stockAvailable" table="Order__c" column="Stock_Available__c" />
+    <Attribute name="isTheDemandPreparedForDispatch" table="Order__c" column="IsTheDemandPreparedForDispatch__c" />
+    <Attribute name="givenStock" table="Order__c" column="GivenStock__c" />
+    <Attribute name="l1InchargeName" table="Order__c" column="L1_Incharge_Name__c" />
+    <Attribute name="l1NameText" table="Order__c" column="L1_NameText__c" />
+    
+    
+    <!-- <Attribute name="orderTemplate" table="Order__c" column="Order_Template__c" /> -->
+  </Attributes>
+  <Entities>
+    <Entity name="Order__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition><![CDATA[ Id = '#pKey#']]></QueryCondition>
+  <OrderCriteria />
+  <Parameters>
+    <Parameter name="pKey" type="TEXT" />
+  </Parameters>
+</DataSource>

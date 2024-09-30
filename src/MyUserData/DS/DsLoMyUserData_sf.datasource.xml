@@ -1,0 +1,21 @@
+<DataSource name="DsLoMyUserData" backendSystem="sf" businessObjectClass="LoMyUserData" external="false" editableEntity="UserData__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pkey" table="UserData__c" column="Id" />
+    <Attribute name="userId" table="UserData__c" column="User__c" />
+    <Attribute name="accountId" table="UserData__c" column="Account__c" />
+    <Attribute name="demandId" table="UserData__c" column="Demand__c" />
+    <Attribute name="accountName" table="UserData__c" column="Account_Name__c" />
+    <Attribute name="customerFeedback" table="UserData__c" column="Customer_Feedback__c" />
+  </Attributes>
+  <Entities>
+    <Entity name="UserData__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition><![CDATA[
+    UserData__c.User__c = #currentUserId#
+  ]]></QueryCondition>
+  <OrderCriteria />
+  <Parameters>
+    <Parameter name="currentUserId" type="TEXT"></Parameter>
+  </Parameters>
+</DataSource>

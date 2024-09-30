@@ -1,0 +1,28 @@
+<Process name="MyDisplay::DisplayDetailsProcess" defaultAction="ShowDisplayDetails" schemaVersion="0.0.0.5">
+  <Entry>
+    <ProcessContext>
+      <Declarations>
+        <Declaration name="DisplayList" type="LoMyDisplays" />
+      </Declarations>
+      <Parameters/>
+    </ProcessContext>
+    <EntryActions>
+      <Action name="loadDisplayList" actionType="LOAD" type="LoMyDisplays">
+          <Return name="ProcessContext::DisplayList" />
+      </Action>
+      <Action name="LoadDisplayCount" actionType="LOAD" type="LuMyDisplayCount">
+        <Return name="ProcessContext::LuMyDisplayCount" />
+      </Action>
+    </EntryActions>
+  </Entry>
+  <Body>
+    <Actions>
+      <!-- View Action -->
+         <Action name="ShowDisplayDetails" actionType="VIEW">
+            <UIDescription>MyDisplay::DisplayDetailsUI</UIDescription>
+            <Events>
+            </Events>
+         </Action>
+      </Actions>
+  </Body>
+</Process>

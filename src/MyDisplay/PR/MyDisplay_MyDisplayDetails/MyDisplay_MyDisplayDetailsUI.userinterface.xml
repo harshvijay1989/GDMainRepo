@@ -1,0 +1,43 @@
+<UIDescription name="MyDisplay::DisplayDetailsUI" schemaVersion="0.0.0.5">
+  <Page pagePattern="MasterDetailSectionPage" masterSectionFlex="40" detailSectionFlex="60">
+    <PageHeader>
+      <Bindings>
+         <Resource target="title" type="Label" id="DisplayDetailsTitle" defaultLabel="Display Details"/>
+         <Binding target="Info" binding="ProcessContext::LuMyDisplayCount.displayCount" bindingMode="ONE_WAY" />
+      </Bindings>
+    </PageHeader>
+    <Section sectionName="masterSection" sectionPattern="SingleAreaSection">
+            <Area areaName="mainArea" areaPattern="SingleElementArea">
+                  <GroupedList name="displayList" master="true" dataSource="ProcessContext::DisplayList.items []">
+                          <Items name="Items" itemPattern="displayDetailsDisplayListItems">
+                                <ItemListLayout>
+                                        <Tablet>
+                                              <Default>
+                                                      <Col flex="1">
+                                                            <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                                                            <Row layoutType="itemSecondaryCockpit" bindingId="Row_Description" />
+                                                      </Col>
+                                              </Default>
+                                        </Tablet>
+                                        <Phone>
+                                              <Default>
+                                                      <Col flex="1">
+                                                            <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                                                      </Col>
+                                              </Default>
+                                        </Phone>
+                                </ItemListLayout>
+                                <Bindings>
+                                        <Binding target="Row_Name" type="Text" binding=".name" bindingMode="ONE_WAY" />
+                                        <Binding target="Row_Description" type="Text" binding=".description" bindingMode="ONE_WAY" />
+                                </Bindings>
+                          </Items>
+                  </GroupedList>
+            </Area>
+      </Section>
+      <Section sectionName="detailSection" sectionPattern="SingleAreaSection">
+        <Area areaName="mainArea" areaPattern="GroupedElementsArea">
+        </Area>
+      </Section>
+  </Page>
+</UIDescription>

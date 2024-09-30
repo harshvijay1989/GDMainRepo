@@ -1,0 +1,29 @@
+<BusinessObject name="BoMyVisitByShops" schemaVersion="1.1">
+  <DataSource name="DsBoMyVisitByShops" />
+  <SimpleProperties>
+    <SimpleProperty name="pKey" type="DomText" id="true" dataSourceProperty="pKey" />
+    <SimpleProperty name="shopName" type="DomText" id="false" dataSourceProperty="shopName" />
+    <SimpleProperty name="totalVisits" type="DomInteger" id="false" dataSourceProperty="totalVisits" />
+    <SimpleProperty name="numberofVisitCreatedByTeritary" type="DomInteger" id="false" dataSourceProperty="numberofVisitCreatedByTeritary" />
+    <SimpleProperty name="numberofVisitsNotCompleted" type="DomInteger" id="false" dataSourceProperty="numberofVisitsNotCompleted" />
+    <SimpleProperty name="shopOwnerName" type="DomInteger" id="false" dataSourceProperty="shopOwnerName" />
+  </SimpleProperties>
+  <NestedObjects></NestedObjects>
+  <ObjectLookups></ObjectLookups>
+  <ListObjects></ListObjects>
+  <Methods>
+    <Method name="beforeSaveAsync" />
+    <Method name="afterSaveAsync" />
+    <Method name="beforeLoadAsync" />
+    <Method name="afterLoadAsync" />
+    <Method name="beforeInitialize" />
+    <Method name="afterInitialize" />
+    <Method name="beforeDoValidateAsync" />
+    <Method name="afterDoValidateAsync" />
+    <Method name="beforeCreateAsync" />
+    <Method name="afterCreateAsync" />
+    <Method name="loadAsync" />
+    <Method name="saveAsync" />
+    <Method name="createAsync" />
+  </Methods>
+</BusinessObject>

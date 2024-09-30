@@ -1,0 +1,273 @@
+<UIDescription name="MyDemandFulfillment::MyDemandFulfillmentUI" schemaVersion="0.0.0.5">
+  <Page pagePattern="MasterDetailSectionPage" navigation="Off" masterSectionFlex="40" detailSectionFlex="60">
+    <PageHeader>
+      <Bindings>
+        <Resource target="title" type="Label" defaultLabel="Demand Fulfillment" bindingMode="ONE_Way" />
+      </Bindings>
+      <MenuItems>
+        <MenuItem directlyVisible="true" itemId="NewDisplayId">
+          <Bindings>
+            <Resource target="Text" type="Label" defaultLabel="Dispatch" />
+            <Resource target="Icon" type="Image" id="CheckDarkGrey24" />
+          </Bindings>
+          <Events>
+            <ButtonPressedEvent event="DispatchOrderButton" />
+          </Events>
+        </MenuItem>
+      </MenuItems>
+    </PageHeader>
+    <Section sectionName="masterSection" sectionPattern="SingleAreaSection">
+      <Area areaName="mainArea" areaPattern="SingleElementArea">
+        <GroupedList name="MasterList" searchable="true" master="true" dataSource="ProcessContext::loDemand.items[]" onItemDisclosure="false">
+          <SearchAttributes>
+            <SearchAttribute name="ShopName" />
+            <SearchAttribute name="OrderId" />
+          </SearchAttributes>
+          <Items name="Items" itemPattern="Pattern1">
+            <ItemListLayout>
+              <Default>
+                <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="ShopNameLabel" />
+                  <Row layoutType="itemIdentifier" bindingId="ShopName" />
+                </Col>
+                <!-- <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="OrderNumberLabel" />
+                  <Row layoutType="itemIdentifier" bindingId="OrderId" />
+                </Col> -->
+                <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="RequestedDateLabel" />
+                  <Row layoutType="itemIdentifier" bindingId="DemandCreatedDate" />
+                </Col>
+              </Default>
+            </ItemListLayout>
+            <Bindings>
+              <Resource target="ShopNameLabel" type="Label" defaultLabel="Shop Name" />
+              <Resource target="OrderNumberLabel" type="Label" defaultLabel="Order Number" />
+              <Resource target="RequestedDateLabel" type="Label" defaultLabel="Requested Date" />
+              <Binding target="DemandCreatedDate" type="Date" binding=".demandCreatedDate" bindingMode="ONE_WAY" />
+              <Binding target="ShopName" type="TEXT" binding=".shopName" bindingMode="ONE_WAY" />
+              <Binding target="OrderId" type="TEXT" binding=".orderId" bindingMode="ONE_WAY" />
+            </Bindings>
+          </Items>
+          <Events>
+            <ItemSelectedEvent event="itemSelected" resetMultiAreas="true">
+              <Params>
+                <Param name="pKey" value=".pKey" />
+              </Params>
+            </ItemSelectedEvent>
+          </Events>
+        </GroupedList>
+      </Area>
+    </Section>
+    <!-- <Section sectionName="detailSection" sectionPattern="SingleAreaSection"> -->
+    <Section sectionName="detailSection" sectionPattern="TabbedViewAreaSection" currentTab="View::currentTabName">
+      <Area areaName="tabArea" areaPattern="TabElementArea">
+        <TabSelector name="TabSelector">
+          <Items>
+            <Tab tabName="Main" backendSystem="both">
+              <Bindings>
+                <Resource target="image" type="Image" id="MainGrey24" defaultImage="MainGrey24" bindingMode="ONE_TIME" />
+                <Resource target="text" type="Label" id="MainId" defaultLabel="Main" bindingMode="ONE_TIME" />
+              </Bindings>
+            </Tab>
+            <Tab tabName="Call" backendSystem="both">
+              <Bindings>
+                <Resource target="image" type="Image" id="SuitcaseGrey24" defaultImage="SuitcaseGrey24" bindingMode="ONE_TIME" />
+                <Resource target="text" type="Label" defaultLabel="Demand Order Items" bindingMode="ONE_TIME" />
+              </Bindings>
+            </Tab>
+            <!-- <Tab tabName="Attachments" backendSystem="both">
+              <Bindings>
+                <Resource target="image" type="Image" id="ClipGrey24" defaultImage="ClipGrey24" bindingMode="ONE_TIME" />
+                <Resource target="text" type="Label" id="AttachmentId" defaultLabel="Attachments" bindingMode="ONE_TIME" />
+              </Bindings>
+            </Tab> -->
+          </Items>
+          <Events>
+            <ItemSelectedEvent event="tabSelected" storeTabNameIn="currentTabName" />
+          </Events>
+        </TabSelector>
+      </Area>
+      <Area areaName="Main" areaPattern="MultiArea">
+        <Area areaName="Main" areaPattern="GroupedElementsArea">
+          <GroupElement name="VisitShopWise">
+            <Bindings>
+              <Resource target="Title" type="Label" defaultLabel="Demand Fulfillment" />
+            </Bindings>
+            <InputArea name="DemandNumber" disabled="true">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Demand Number" />
+                <Binding target="Value" type="Text" binding="ProcessContext::boDemand.orderId" bindingMode="TWO_WAY" />
+              </Bindings>
+            </InputArea>
+            <InputArea name="ShopName" disabled="true">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Shop Name" />
+                <Binding target="Value" type="Text" binding="ProcessContext::boDemand.shopName" bindingMode="TWO_WAY" />
+              </Bindings>
+            </InputArea>
+            <InputArea name="DemandStage" disabled="true">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Demand Stage" />
+                <Binding target="Value" type="Text" binding="ProcessContext::boDemand.stage" bindingMode="TWO_WAY" />
+              </Bindings>
+            </InputArea>
+            <InputArea name="L1Name" disabled="true">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="L1 Name" />
+                <Binding target="Value" type="Text" binding="ProcessContext::boDemand.l1NameText" bindingMode="TWO_WAY" />
+              </Bindings>
+            </InputArea>
+            <InputArea name="L1InChargeWhotheyMetAtL1" disabled="true">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="L1 In-Charge Name" />
+                <Binding target="Value" type="Text" binding="ProcessContext::boDemand.l1InchargeName" bindingMode="TWO_WAY" />
+              </Bindings>
+            </InputArea>
+          
+            <!-- <CheckBox name="SdoMetaBlocked" disabled="true">
+              <Bindings>
+                <Resource target="Label" type="Label" id="SdoMetaBlockedId" defaultLabel="Template Blocked" />
+                <Binding target="checkedValue" binding="ProcessContext::CustomerDetail.BoOrderRole.sdoMetaBlocked" bindingMode="TWO_WAY" />
+              </Bindings>
+            </CheckBox>
+            <TimePickerField name="StartTimeTimeSlot">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Start time" id="TimeFromTimeSlot" />
+                <Binding target="Value" binding="ProcessContext::TimeSlot.startTime" bindingMode="TWO_WAY" />
+              </Bindings>
+            </TimePickerField> -->
+
+            <!-- <DatePickerField name="DateClosure">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Closure Date" id="DateClosure" />
+                <Binding target="Value" binding="ProcessContext::CustomerDetail.dateClosure" bindingMode="TWO_WAY" />
+              </Bindings>
+            </DatePickerField> -->
+
+            <!-- <TimePickerField name="DemandFulfillmentDate">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Demand Fulfillment Date" />
+                <Binding target="Value" binding="ProcessContext::boDemand.demandFulfillmentDate" bindingMode="TWO_WAY" />
+              </Bindings>
+            </TimePickerField> -->
+            <DatePickerField name="DemandFulfillmentDate">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Demand Fulfillment Date" />
+                <Binding target="Value" binding="ProcessContext::boDemand.demandFulfillmentDate" bindingMode="TWO_WAY" />
+              </Bindings>
+            </DatePickerField>
+            <CheckBox name="DemandDispatch">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Demand Dispatched" />
+                <Binding target="checkedValue" binding="ProcessContext::boDemand.demandDispatched" bindingMode="TWO_WAY" />
+              </Bindings>
+            </CheckBox>
+            <Stepper name="GivenStock" minValue="0" maxValue="99999">
+              <Bindings>
+                <Resource target="Label" type="Label" defaultLabel="Given Stock"  />
+                <Binding target="Value" type="Decimal" formatV2="15.2" binding="ProcessContext::boDemand.givenStock" bindingMode="TWO_WAY" />
+                <Binding target="StepSize" value="1" />
+              </Bindings>
+            </Stepper>
+          </GroupElement>
+        </Area>
+      </Area>
+      <Area areaName="Call" areaPattern="SingleElementArea" lazyLoading="true">
+        <GroupElement name="DemandOrderItems">
+          <Bindings>
+            <Resource target="Title" type="Label" defaultLabel="Demand Order Items" />
+          </Bindings>
+        </GroupElement>
+        <GroupedList name="CustomerCallList" searchable="true" dataSource="ProcessContext::loDemandOrderItems.Items[]" hasBorder="true" onItemDisclosure="false">
+          <SearchAttributes>
+            <SearchAttribute name="ProductName" />
+          </SearchAttributes>
+          <Items name="Items" itemPattern="CustomerCallItem">
+            <ItemListLayout>
+              <Default>
+                <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="ProductNameLabel" />
+                  <Row layoutType="itemIdentifier" bindingId="ProductName" />
+                </Col>
+                <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="QuantityLabel" />
+                  <Row layoutType="itemIdentifier" bindingId="Quantity" />
+                </Col>
+                <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="AvailableStockLabel" />
+                  <Row layoutType="itemIdentifier" bindingId="AvailableStock" />
+                </Col>
+                 <Col flex="2" bindingId="GivenStock" />
+                <!-- <Col>
+                  <Row width="2em" layoutType="itemLabel" bindingId="GivenStockLabel" />
+                  <Row layoutType="itemIdentifier" bindingId="GivenStock" />
+                </Col> -->
+              </Default>
+            </ItemListLayout>
+            <Bindings>
+              <Binding target="GivenStock" type="Stepper" binding=".givenStock" minValue="0" maxValue="9999" minBinding="minStepperValue" bindingMode="TWO_WAY" formatV2="4.0" stepperCorrelationId=".pKey" />
+              <Resource target="ProductNameLabel" type="Label" defaultLabel="Product Name" />
+              <Resource target="QuantityLabel" type="Label" defaultLabel="Quantity" />
+              <Resource target="AvailableStockLabel" type="Label" defaultLabel="Available Stock" />
+              <Resource target="GivenStockLabel" type="Label" defaultLabel="Given Stock" />
+              <Binding target="ProductName" type="Text" binding=".productName" bindingMode="ONE_WAY" />
+              <Binding target="Quantity" type="TEXT" binding=".quantity" bindingMode="ONE_WAY" />
+              <Binding target="AvailableStock" type="TEXT" binding=".availableStock" bindingMode="TWO_WAY" />              
+            </Bindings>
+          </Items>
+          <Events/>
+        </GroupedList>
+      </Area>
+      <!-- <Area areaName="detailArea" areaPattern="GroupedElementsArea">
+        <GroupElement name="VisitShopWise">
+          <Bindings>
+            <Resource target="Title" type="Label" defaultLabel="Demand Fulfillment" />
+          </Bindings>
+          <InputArea name="DemandNumber" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Demand Number" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boDemand.orderId" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="ShopName" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Shop Name" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boDemand.shopName" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="DemandStage">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Demand Stage" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boDemand.stage" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="L1Name">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="L1 Name" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boDemand.l1Name" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="L1InChargeWhotheyMetAtL1">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="L1 In-Charge (Who they Met at L1)" />
+              <Binding target="Value" type="Text" binding="ProcessContext::boDemand.l1InChargeWhotheyMetAtL1" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="DemandFulfillmentRequestedDate" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Demand Fulfillment requested Date" />
+              <Binding target="Value" type="Date" binding="ProcessContext::boDemand.demandCreatedDate" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="DemandFulfillmentRecivedDate" disabled="true">
+            <Bindings>
+              <Resource target="Label" type="Label" defaultLabel="Demand Fulfillment recived Date" />
+              <Binding target="Value" type="Date" binding="ProcessContext::boDemand.demandFulfillmentRecivedDate" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputArea>
+        </GroupElement>
+      </Area> -->
+    </Section>
+  </Page>
+</UIDescription>

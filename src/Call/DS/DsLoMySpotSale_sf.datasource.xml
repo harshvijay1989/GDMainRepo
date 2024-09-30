@@ -1,0 +1,21 @@
+<DataSource name="DsLoMySpotSale" backendSystem="sf" businessObjectClass="LoMySpotSale" external="false" editableEntity="Store_Product__c" schemaVersion="2.0">
+  <Attributes>
+    <Attribute name="pKey" table="Store_Product__c" column="Id" />
+    <Attribute name="name" table="Store_Product__c" column="Name" />
+    <Attribute name="quantity" table="Store_Product__c" column="Units__c" />
+    <Attribute name="productNameFormula" table="Store_Product__c" column="ProductName__c" />
+    <!-- <Attribute name="visitId" table="Store_Product__c" column="Visit__c" /> -->
+    <!-- <Attribute name="VisitPKey" table="Store_Product__c" column="Visit__c" /> -->
+    <!-- <Attribute name="productNameFormula" table="Store_Product__c" column="ProductName__c" /> -->
+  </Attributes>
+  <Entities>
+    <Entity name="Store_Product__c" alias="" idAttribute="Id" />
+  </Entities>  
+  <QueryCondition><![CDATA[Store_Product__c.Visit__c = '#visitPKey#']]></QueryCondition>
+  <OrderCriteria>
+    <!-- <OrderCriterion entity="StoreProduct" attribute="LastModifiedDate" direction="DESC" /> -->
+  </OrderCriteria>
+  <Parameters>
+    <Parameter name="visitPKey" type="TEXT" />
+  </Parameters>
+</DataSource>

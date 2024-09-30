@@ -1,0 +1,83 @@
+<Process name="MyDemandFulfillment::MyDemandFulfillmentProcess" defaultAction="ShowMyDemandFulfillmentUI" schemaVersion="0.0.0.5">
+  <Entry>
+    <ProcessContext>
+      <Declarations>
+        <Declaration name="boDemand" type="BoMyDemand" />
+        <Declaration name="loDemand" type="LoMyDemand" />
+        <Declaration name="loDemandOrderItems" type="LoMyDemandOrderItems" />
+      </Declarations>
+      <Parameters/>
+    </ProcessContext>
+    <EntryActions>
+      <Action name="loadDemands" actionType="LOAD" type="LoMyDemand">
+        <Return name="ProcessContext::loDemand" />
+      </Action>
+    </EntryActions>
+  </Entry>
+  <Body>
+    <Actions>
+      <Action actionType="View" name="ShowMyDemandFulfillmentUI">
+        <UIDescription>MyDemandFulfillment::MyDemandFulfillmentUI</UIDescription>
+        <Events>
+          <Event name="itemSelected" action="MasterDetailHandlerAction" />
+          <Event name="tabSelected" action="TabDecision" />
+          <Event name="DispatchOrderButton" action="DispatchOrderButtonAction" />
+        </Events>
+      </Action>
+      <Action name="MasterDetailHandlerAction" actionType="MASTER_DETAIL_HANDLER">
+        <MasterList name="ProcessContext::loDemand">
+          <ItemUnselected type="RELOAD"></ItemUnselected>
+        </MasterList>
+        <DetailObject name="ProcessContext::boDemand" objectClass="BoMyDemand">
+          <Save type="DIRTY" confirmation="FALSE" validate="TRUE" />
+          <!-- <Save type="ALWAYS" confirmation="FALSE" validate="FALSE" /> -->
+        </DetailObject>
+      </Action>
+      <Action name="TabDecision" actionType="DECISION" parameter="Event.tabName">
+        <Case value="Call" action="LoadCallCustomerDetail" />
+        <!-- <Case value="Attachments" action="LoadLoAttachment" /> -->
+        <CaseElse action="ShowMyDemandFulfillmentUI" />
+      </Action>
+      <!-- Call Tab -->
+      <Action name="LoadCallCustomerDetail" actionType="LOAD" type="LoMyDemandOrderItems">
+        <Parameters>
+          <Input name="orderId" value="ProcessContext::boDemand.pKey" />
+        </Parameters>
+        <Return name="ProcessContext::loDemandOrderItems" />
+      </Action>
+      <!--For Validate Stock Postitoning-->
+      <Action actionType="VALIDATION" name="DispatchOrderButtonAction">
+        <Validations>
+        <Validation name="ProcessContext::boDemand.myValidateStock" />
+        </Validations>
+        <TransitionTo action="ValidationResult_Decision" />
+      </Action>
+      <Action name="ValidationResult_Decision" actionType="DECISION" parameter="ProcessContext::validationResult">
+        <Case value="validateOk" action="End" />
+        <Case value="validateDiscard" action="ResetBoInProcessContext" />
+        <CaseElse action="ShowMyDemandFulfillmentUI" />
+        <CaseEmpty action="ShowMyDemandFulfillmentUI" />
+      </Action>
+      <Action actionType="LOGIC" name="ResetBoInProcessContext" call="Utils.identity">
+        <Parameters>
+        <Input name="value" type="Literal" value="" />
+        </Parameters>
+      </Action>
+
+      <!-- 29-09-2024
+      <Action actionType="VALIDATION" name="SaveBeforeOrderSubProcess">
+        <Validations>
+          <Validation name="ProcessContext::boDemand.myValidateStock" />
+        </Validations>
+        <TransitionTo action="ValidationResult_Decision" />
+      </Action> -->
+
+      <!-- <Action name="SaveNewSpotSale" actionType="SAVE">
+        <Parameters>
+          <Input name="boDemand" value="ProcessContext::boDemand" />
+        </Parameters>
+        <TransitionTo action="End" />
+      </Action> -->
+    </Actions>
+  </Body>
+</Process>

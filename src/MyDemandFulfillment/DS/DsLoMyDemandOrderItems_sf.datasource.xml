@@ -1,0 +1,19 @@
+<DataSource name="DsLoMyDemandOrderItems" backendSystem="sf" businessObjectClass="LoMyDemandOrderItems" external="false" editableEntity="Order_Item__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pKey" table="Order_Item__c" column="Id" />
+    <Attribute name="productName" table="Order_Item__c" column="ProductName__c" />
+    <Attribute name="quantity" table="Order_Item__c" column="Quantity__c" />
+    <Attribute name="orderId" table="Order_Item__c" column="Order__c" />
+    <Attribute name="availableStock" table="Order_Item__c" column="AvailableStock__c" />
+    <Attribute name="givenStock" table="Order_Item__c" column="Given_Stock__c" />
+  </Attributes>
+  <Entities>
+    <Entity name="Order_Item__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition><![CDATA[Order__c = #orderId#]]></QueryCondition>
+  <OrderCriteria />
+  <Parameters>
+    <Parameter name="orderId" type="TEXT" />
+  </Parameters>
+</DataSource>

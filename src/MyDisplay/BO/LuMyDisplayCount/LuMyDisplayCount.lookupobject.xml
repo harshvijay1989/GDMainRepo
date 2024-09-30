@@ -1,0 +1,13 @@
+<LookupObject name="LuMyDisplayCount" generateLoadMethod="true" schemaVersion="1.1">
+  <!--In case lookup does not require datasource, let name of datasource property empty-->
+  <DataSource name="DsLuMyDisplayCount" />
+  <SimpleProperties>
+    <!-- You can use LookupObjectSimplePropertiesSimplePropertySnipp.xml as template (workingFolder->contractSnippets->YourModule Section->BO->LU_LookupObject->snippets) for your case/-->
+    <SimpleProperty name="displayCount" type="DomInteger" storable="true" dataSourceProperty="displayCount" />
+  </SimpleProperties>
+  <Methods>
+    <Method name="afterLoadAsync" />
+    <Method name="beforeLoadAsync" />
+    <Method name="loadAsync" />
+  </Methods>
+</LookupObject>

@@ -1,0 +1,12 @@
+<ListItem name="LiMyUserData">
+  <SimpleProperties>
+      <!-- You can use <workspaceRoot>/contractSnippets/YourModule Section/BO/LO_ListObject/snippets/ListItemSimplePropertiesSimplePropertySnipp.xml as template for your case -->
+        
+      <SimpleProperty id="true" name="pkey" type="DomPkey" dataSourceProperty="pkey" />
+      <SimpleProperty id="true" name="userId" type="DomPkey" dataSourceProperty="userId" />
+      <SimpleProperty id="true" name="accountId" type="DomPkey" dataSourceProperty="accountId" />
+      <SimpleProperty id="true" name="demandId" type="DomPkey" dataSourceProperty="demandId" />
+      <SimpleProperty name="accountName" type="DomText" dataSourceProperty="accountName" />
+      <SimpleProperty name="customerFeedback" type="DomText" dataSourceProperty="customerFeedback" />
+  </SimpleProperties>
+</ListItem>

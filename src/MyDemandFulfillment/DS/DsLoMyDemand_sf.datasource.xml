@@ -1,0 +1,28 @@
+<DataSource name="DsLoMyDemand" backendSystem="sf" businessObjectClass="LoMyDemand" external="false" editableEntity="Order__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pKey" table="Order__c" column="Id" />
+    <Attribute name="orderId" table="Order__c" column="Order_Id__c" />
+    <Attribute name="orderAccountId" table="Order__c" column="Order_Account__c" />
+    <Attribute name="demandCreatedDate" table="Order__c" column="Order_Date__c" />
+    <Attribute name="l1Name" table="Order__c" column="L1Name__c" />
+    <Attribute name="l1InChargeWhotheyMetAtL1" table="Order__c" column="L1InChargeWhotheyMetAtL1__c" />
+    <Attribute name="demandFulfillmentRecivedDate" table="Order__c" column="DemandFulfillmentRecivedDate__c" />
+    <Attribute name="demandFulfillmentrReqquestedDate" table="Order__c" column="DemandFulfillmentrReqquestedDate__c" />
+    <Attribute name="stage" table="Order__c" column="Stage__c" />
+    <Attribute name="shopName" table="Order__c" column="ShopName__c" />
+  </Attributes>
+  <Entities>
+    <Entity name="Order__c" alias="" idAttribute="Id" />
+  </Entities>
+  <QueryCondition><![CDATA[
+    Order__c.DemandDispatched__c <> '1'
+    ]]></QueryCondition>
+  <!-- <QueryCondition><![CDATA[
+  Order__c.Stage__c = 'Order Received'
+  ]]></QueryCondition> -->
+  <OrderCriteria>
+    <OrderCriterion entity="Order__c" attribute="LastModifiedDate" direction="DESC" />
+  </OrderCriteria>
+  <Parameters/>
+</DataSource>

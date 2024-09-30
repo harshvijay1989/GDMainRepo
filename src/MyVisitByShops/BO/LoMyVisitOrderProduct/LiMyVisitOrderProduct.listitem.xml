@@ -1,0 +1,9 @@
+<ListItem name="LiMyVisitOrderProduct">
+  <SimpleProperties>
+      <SimpleProperty name="pKey" type="DomText" dataSourceProperty="pKey" />
+      <SimpleProperty name="productName" type="DomText" dataSourceProperty="productName" />
+      <SimpleProperty name="quantity" type="DomText" dataSourceProperty="quantity" />
+      <SimpleProperty name="demandCreatedDate" type="DomText" dataSourceProperty="demandCreatedDate" />
+      <!-- You can use <workspaceRoot>/contractSnippets/YourModule Section/BO/LO_ListObject/snippets/ListItemSimplePropertiesSimplePropertySnipp.xml as template for your case -->
+  </SimpleProperties>
+</ListItem>

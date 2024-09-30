@@ -1,0 +1,52 @@
+<Process name="Call::MySpotSaleProcess" defaultAction="ShowMySpotSaleUI"
+  schemaVersion="0.0.0.5">
+  <Entry>
+    <ProcessContext>
+      <Declarations>
+        <Declaration name="spotSaleLo" type="LoMySpotSale" />
+        <Declaration name="VisitPKey" type="String" /> 
+      </Declarations>
+      <Parameters>
+        <Input name="VisitPKey" type="String" />
+      </Parameters>
+    </ProcessContext>
+    <EntryActions>
+      <!-- <Action name="presetVisitId" actionType="LOGIC" call="ProcessContext::VisitPKey">
+        <Return name="ProcessContext::VisitPKey" />
+      </Action> -->
+      <Action name="loadSpotSaleLoData" actionType="LOAD" type="LoMySpotSale">
+        <Parameters>
+          <Input name="visitPKey" value="ProcessContext::VisitPKey" />
+        </Parameters>
+        <Return name="ProcessContext::spotSaleLo" />
+      </Action>
+    </EntryActions>
+  </Entry>
+  <Body>
+    <Actions>
+      <Action actionType="View" name="ShowMySpotSaleUI">
+        <UIDescription>Call::MySpotSaleUI</UIDescription>
+        <Events>
+          <Event name="createNewSpotSale" action="createNew" />
+          <!-- <Event name="itemSelected" action="MasterDetailHandlerAction" /> -->
+        </Events>
+      </Action>
+      <Action name="createNew" actionType="SAVE">
+        <DetailObject name="ProcessContext::spotSaleBo" objectClass="BoMySpotSale">
+          <Save type="STATE_NEW_DIRTY" confirmation="FALSE" validate="FALSE" />
+        </DetailObject>
+        <TransitionTo action="End" />
+      </Action>
+
+      <Action actionType="END" name="End" />
+      <!-- <Action name="MasterDetailHandlerAction" actionType="MASTER_DETAIL_HANDLER">
+        <MasterList name="ProcessContext::spotSaleLo">
+          <ItemUnselected type="RELOAD"></ItemUnselected>
+        </MasterList>
+        <DetailObject name="ProcessContext::spotSaleBo" objectClass="BoMySpotSale">
+          <Save type="STATE_NEW_DIRTY" confirmation="FALSE" validate="FALSE" />
+        </DetailObject>
+      </Action> -->
+    </Actions>
+  </Body>
+</Process>

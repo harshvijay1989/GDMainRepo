@@ -1,0 +1,42 @@
+<Process name="MyVisitByShops::MyVisitShopWiseProcess" defaultAction="ShowMyVisitShopWiseUI" schemaVersion="0.0.0.5">
+  <Entry>
+    <ProcessContext>
+      <Declarations>
+        <Declaration name="loVisitShopWise" type="LoMyVisitByShops" />
+        <Declaration name="boVisitShopWise" type="BoMyVisitByShops" />
+        <Declaration name="loVisitOrderProduct" type="LoMyVisitOrderProduct" />
+      </Declarations>
+      <Parameters/>
+    </ProcessContext>
+    <EntryActions>
+      <Action name="loadVisitShopWise" actionType="LOAD" type="LoMyVisitByShops">
+        <Return name="ProcessContext::loVisitShopWise" />
+      </Action>
+      <Action name="loadVisitOrderProduct" actionType="LOAD" type="LoMyVisitOrderProduct">
+        <Parameters>
+          <Input name="pKey" value="ProcessContext::boVisitShopWise.pKey" />
+        </Parameters>
+        <Return name="ProcessContext::loVisitOrderProduct" />
+      </Action>
+    </EntryActions>
+  </Entry>
+  <Body>
+    <Actions>
+      <Action actionType="View" name="ShowMyVisitShopWiseUI">
+        <UIDescription>MyVisitByShops::MyVisitShopWiseUI</UIDescription>
+        <Events>
+          <Event name="itemSelected" action="MasterDetailHandlerAction" />
+        </Events>
+      </Action>
+      <Action name="MasterDetailHandlerAction" actionType="MASTER_DETAIL_HANDLER">
+        <MasterList name="ProcessContext::loVisitShopWise">
+          <ItemUnselected type="RELOAD"></ItemUnselected>
+        </MasterList>
+        <DetailObject name="ProcessContext::boVisitShopWise" objectClass="BoMyVisitByShops">
+          <Save type="DIRTY" confirmation="FALSE" validate="TRUE" />
+          <!-- <Save type="ALWAYS" confirmation="FALSE" validate="FALSE" /> -->
+        </DetailObject>
+      </Action>
+    </Actions>
+  </Body>
+</Process>
